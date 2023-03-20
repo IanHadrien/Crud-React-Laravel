@@ -2,17 +2,17 @@ import { useForm } from '@inertiajs/react';
 import React from 'react';
 import { BsFillPersonFill, BsPersonVcard } from 'react-icons/bs';
 
-export default function Create() {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        positions: '',
+export default function Edit(props) {
+    const { developer } = props;
+
+    const { data, setData, put, processing, errors } = useForm({
+        name: developer.name || '',
+        positions: developer.positions || '',
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data);
-        post('/developers');
-        reset();
+        put(`/developers/${developer.id}`);
     };
 
   return (
