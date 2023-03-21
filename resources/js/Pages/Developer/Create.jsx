@@ -2,7 +2,9 @@ import { useForm } from '@inertiajs/react';
 import React from 'react';
 import { BsFillPersonFill, BsPersonVcard } from 'react-icons/bs';
 
-export default function Create() {
+export default function Create(props) {
+    const { flash } = props;
+
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         positions: '',
@@ -10,14 +12,20 @@ export default function Create() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data);
         post('/developers');
         reset();
     };
 
   return (
     <div className='w-3/4 m-auto py-10'>
-        <div className='flex pb-6'>
+        {flash.message && (
+        <div className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div className="flex">
+                <div><p className="font-bold">{flash.message}</p></div>
+            </div>
+        </div>)}
+
+        <div className='flex pb-6 pt-4'>
             <a href="/developers"className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                 Voltar
             </a>

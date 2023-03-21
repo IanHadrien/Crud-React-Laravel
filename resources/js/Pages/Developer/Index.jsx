@@ -20,21 +20,29 @@ export default function Index(props) {
             <h2 className='text-4xl'>Developers</h2>
 
             <a href="developers/create"className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-4 rounded">
-                New Developer
+                Novo Desenvolvedor
+            </a>
+
+            <a href="skills"className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 mx-4 rounded">
+                Acessar PDF
+            </a>
+
+            <a href="download"className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 mx-4 rounded">
+                Baixar PDF
             </a>
         </div>
 
         <div className='flex justify-around py-8'>
             <div className='border-solid border border-sky-500 rounded'>
-                <h2 className='p-2 bg-blue-500 text-white font-bold'>Total developers</h2>
+                <h2 className='p-2 bg-blue-500 text-white font-bold'>Total de Desenvolvedores</h2>
 
-                <p className='p-4'>{developers.length} developers</p>
+                <p className='p-4'>{developers.length} Desenvolvedores</p>
             </div>
 
             <div className='border-solid border-2 border-sky-500 rounded'>
-                <h2 className='px-4 py-2 bg-blue-500 text-white font-bold'>Total skills</h2>
+                <h2 className='px-4 py-2 bg-blue-500 text-white font-bold'>Total de Habilidades</h2>
 
-                <p className='p-4'>{skills.length} skills</p>
+                <p className='p-4'>{skills.length} Habilidades</p>
             </div>
         </div>
 

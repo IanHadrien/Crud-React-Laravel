@@ -1,8 +1,9 @@
 import { useForm } from '@inertiajs/react';
 import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function Show(props) {
-    const {developer, skills} = props;
+    const {developer, skills, flash} = props;
 
     const { data, setData, post, processing, errors, reset } = useForm({
         content: '',
@@ -17,7 +18,14 @@ export default function Show(props) {
 
   return (
     <div className='w-3/4 m-auto py-10'>
-        <div className='flex items-center justify-between'>
+        {flash.message && (
+        <div className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div className="flex">
+                <div><p className="font-bold">{flash.message}</p></div>
+            </div>
+        </div>)}
+
+        <div className='flex items-center justify-between pt-4'>
             <h2 className='text-4xl'>{developer.name}</h2>
 
             <a href="/developers"className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
@@ -34,7 +42,7 @@ export default function Show(props) {
         </div>
 
         <div className='pb-6'>
-            <h2>Nova Habilidade</h2>
+            <h2 className='font-bold'>Nova Habilidade</h2>
 
             <div className="flex">
                 <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 rounded-l-md">
@@ -56,7 +64,7 @@ export default function Show(props) {
         </div>
 
         <div>
-            <h2>Lista de Habilidades:</h2>
+            <h2 className='font-bold'>Lista de Habilidades:</h2>
 
             {skills.map((skill) => (
                 <div key={skill.id} className='flex items-center justify-between border-2 border-sky-500 p-2 bg-blue-50 font-bold rounded'>

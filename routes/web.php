@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\SkillController;
+use App\Models\Developer;
+use App\Models\Skill;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
@@ -17,17 +19,18 @@ use Illuminate\Support\Facades\Route;
 */
 use Inertia\Inertia;
 
-Route::get('/pdf', function () {
-    $data['name'] = 'Ian Hadrien';
+Route::get('/download', function () {
+    // $data['name'] = 'Ian Hadrien';
 
-    $pdf = Pdf::loadView('welcome', $data);
+    // $pdf = Pdf::loadView('welcome', $data);
     // return $pdf->download('invoice.pdf');
-    return $pdf->stream();
+    // return $pdf->stream();
 
-    // return view('welcome');
+    $skills = Skill::all();
+    $developers = Developer::all();
 
-    // return Inertia::render('Home');
-    // return Inertia::render('Home');
+    $pdf = Pdf::loadView('pdf.pdf', ['skills' => $skills, 'developers' => $developers]);
+    return $pdf->download('pdf.pdf');
 });
 
 Route::get('/', function () {
